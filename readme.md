@@ -51,4 +51,6 @@ Open Your favourite browser and go to localhost:3000 to access this site. (Selec
 
 
 
-This Project was made collectively by [Raunaq Singh](https://www.github.com/raunaqsingh07) and [Anmol Ahuja](https://www.github.com/ahujaanmol1288) as MAJOR PROJECT-1 at JIIT.
+This project was developed by Vikash Kumar Yadav.
+
+I built this project to analyze crime data using Machine Learning (K-Means Clustering) and provide safer route suggestions using Google Maps.
