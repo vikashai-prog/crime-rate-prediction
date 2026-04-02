@@ -1,0 +1,106 @@
+<% include header %>
+
+<style>
+body {
+    background: linear-gradient(to right, #141e30, #243b55);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.login-card {
+    width: 350px;
+    margin: 80px auto;
+    padding: 30px;
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    animation: fadeIn 1s ease-in-out;
+}
+
+.login-card h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.input-group {
+    margin-bottom: 15px;
+    position: relative;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+}
+
+.input-group span {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    cursor: pointer;
+}
+
+.login-btn {
+    width: 100%;
+    padding: 10px;
+    background: #28a745;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.login-btn:hover {
+    background: #1e7e34;
+}
+
+.signup-text {
+    text-align: center;
+    margin-top: 10px;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+</style>
+
+<div class="login-card">
+
+    <h2>Welcome Back 👋</h2>
+
+    <form action="/login" method="POST" autocomplete="off">
+
+    <div class="input-group">
+        <input type="text" name="username" placeholder="👤 Username" required autocomplete="off">
+    </div>
+
+    <div class="input-group">
+        <input type="password" id="password" name="password" placeholder="🔒 Password" required autocomplete="new-password">
+        <span onclick="togglePassword()">👁️</span>
+    </div>
+
+    <button class="login-btn">Login</button>
+
+</form>
+
+    <div class="signup-text">
+        <p>Don't have an account? <a href="/signup">Sign Up</a></p>
+    </div>
+
+</div>
+
+<script>
+function togglePassword() {
+    var x = document.getElementById("password");
+    x.type = x.type === "password" ? "text" : "password";
+}
+</script>

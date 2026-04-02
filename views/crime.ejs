@@ -1,0 +1,183 @@
+<%include header%>
+
+    <!DOCTYPE html>
+    <html>
+
+    <head>
+        <title>Major Project</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+        <link rel="stylesheet" href="style.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js" type="text/javascript"
+            async></script>
+        <style type="text/css">
+            body {
+                background-color: aliceblue;
+
+            }
+
+            .app1 {
+                margin-top: 100px;
+            }
+            #myChart{
+                height: 50%;
+                width: 50%;
+                
+            }
+        </style>
+    </head>
+
+    <body id="landing" class="container text-white">
+
+
+        <div id="landing-header">
+
+            <form autocomplete="off" method="POST" action="/crime" class="form-horizontal app1"
+                onsubmit="handleSubmit(event);">
+                <h3
+                    style="text-align: left; font-size: 50px; font-family: georgia; margin-bottom: 20px; color:blueviolet">
+                    Select State Name: </h3>
+                <div class="form-group ">
+                    <div class="col-sm-9 "
+                        style="text-align: center; font-size: 20px; font-family: georgia; margin-bottom: 20px; color:blueviolet">
+
+                        <select id="dropdown-list" name="search" id="search">
+                            <option value="ANDHRA PRADESH">Andhra Pradesh</option>
+                            <option value="ARUNACHAL PRADESH">Arunachal Pradesh</option>
+                            <option value="ASSAM">Assam</option>
+                            <option value="BIHAR">Bihar</option>
+                            <option value="CHHATTISGARH">Chhattisgarh</option>
+                            <option value="GOA">Goa</option>
+                            <option value="GJ">Gujarat</option>
+                            <option value="HR">Haryana</option>
+                            <option value="HP">Himachal Pradesh</option>
+                            <option value="JH">Jharkhand</option>
+                            <option value="KA">Karnataka</option>
+                            <option value="KL">Kerala</option>
+                            <option value="MP">Madhya Pradesh</option>
+                            <option value="MH">Maharashtra</option>
+                            <option value="MN">Manipur</option>
+                            <option value="ML">Meghalaya</option>
+                            <option value="MZ">Mizoram</option>
+                            <option value="NL">Nagaland</option>
+                            <option value="OR">Odisha</option>
+                            <option value="PB">Punjab</option>
+                            <option value="RJ">Rajasthan</option>
+                            <option value="SK">Sikkim</option>
+                            <option value="TN">Tamil Nadu</option>
+                            <option value="TS">Telangana</option>
+                            <option value="TR">Tripura</option>
+                            <option value="UK">Uttarakhand</option>
+                            <option value="UP">Uttar Pradesh</option>
+                            <option value="WB">West Bengal</option>
+                        </select>
+                        <button class="btn  btn-primary "> Submit</button>
+
+                        <br />
+                        <br />
+
+                    </div>
+                </div>
+            </form>
+            <div>
+                <canvas id="myChart"></canvas>
+            </div>
+
+            <script type="text/javascript">
+                // your code here
+                var handleSubmit = (event) => {
+                    event.preventDefault();
+                    //console.log("Hiii")
+                    const formData = new FormData(event.target);
+                    formObj = {};
+
+                    for (const [fieldName] of formData) {
+                        const fieldValue = formData.getAll(fieldName);
+                        formObj[fieldName] = fieldValue.length == 1 ? fieldValue.toString() : fieldValue
+                    }
+                    //console.log(formObj)
+
+                    //Fiexed the error
+                    fetch('http://localhost:8000/data')
+                        .then(response => response.json())
+                        .then(data => {
+                            // do something with the data
+                            var query = formObj.search;
+                            //console.log(query)
+                            const searchObject = data.find((car) => car.STATE_NAME == query);
+                            //console.log(searchObject)
+                            const propertyNames = Object.keys(searchObject);
+                            delete propertyNames[0];
+                            delete propertyNames[1];
+                            const propertyValues = Object.values(searchObject);
+                            delete propertyValues[0];
+                            delete propertyValues[1];
+                            // console.log(propertyNames);
+                            // console.log(propertyValues)
+
+
+                            var ctx = document.getElementById('myChart').getContext('2d');
+                            var chart = new Chart(ctx, {
+                                type: 'bar',
+                                data: {
+                                    labels: propertyNames,
+                                    datasets: [{
+                                        label: '# of Crimes',
+                                        data: propertyValues,
+                                        backgroundColor: [
+                                            'rgba(255, 99, 132, 0.2)',
+                                            'rgba(54, 162, 235, 0.2)',
+                                            'rgba(255, 206, 86, 0.2)',
+                                            'rgba(75, 192, 192, 0.2)',
+                                            'rgba(153, 102, 255, 0.2)',
+                                            'rgba(255, 159, 64, 0.2)'
+                                        ],
+                                        borderColor: [
+                                            'rgba(255, 99, 132, 1)',
+                                            'rgba(54, 162, 235, 1)',
+                                            'rgba(255, 206, 86, 1)',
+                                            'rgba(75, 192, 192, 1)',
+                                            'rgba(153, 102, 255, 1)',
+                                            'rgba(255, 159, 64, 1)'
+                                        ],
+                                        borderWidth: 1
+                                    }]
+                                },
+                                options: {
+                                    scales: {
+                                        yAxes: [{
+                                            ticks: {
+                                                beginAtZero: true
+                                            }
+                                        }]
+                                    }
+                                }
+                            })
+
+
+                        });
+
+
+
+                }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            </script>
+        </div>
+
+
+    </body>
+    <script defer src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
+
+    </html>

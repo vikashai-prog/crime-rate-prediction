@@ -1,0 +1,44 @@
+<% include header %>
+
+<style>
+body {
+    background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
+    font-family: Arial;
+}
+
+.signup-card {
+    width: 350px;
+    margin: 80px auto;
+    padding: 30px;
+    background: white;
+    border-radius: 10px;
+    text-align: center;
+}
+
+input {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+}
+
+button {
+    width: 100%;
+    padding: 10px;
+    background: blue;
+    color: white;
+    border: none;
+}
+</style>
+
+<div class="signup-card">
+    <h2>Sign Up</h2>
+
+    <form action="/signup" method="POST">
+        <input type="text" name="username" placeholder="Username" required>
+        <input type="password" name="password" placeholder="Password" required>
+
+        <button>Sign Up</button>
+    </form>
+
+    <p><a href="/login">Already have account? Login</a></p>
+</div>
