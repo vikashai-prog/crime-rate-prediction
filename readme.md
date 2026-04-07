@@ -1,56 +1,139 @@
-# Crime rate predection with integration of google maps
-*Because you must look before you leave!*
+# 🚔 Crime Rate Prediction & Safe Route Navigation with machine learning and Google maps 
 
-The issue of safety is of crucial importance in Delhi with the ever so escalating crime rates. Putting the same crime related data to good use, we have come up with an app that suggests alternative routes between any two places in Delhi, giving information about not only the time duaration and distance of travel, but also a certain 'Danger Index' of each route.
-We evaluate this 'Danger Index' by applying Unsupersvised Machine Learning on crime data/records of the past. 
-We hope to extend this app's utility by including more detailed and transparent data which is not currently available.
+**"Because you must look before you leave!"**
 
+## 📌 Overview
 
-## Technical complexity:
+This project focuses on improving public safety by analyzing crime data in Delhi and suggesting safer travel routes. It integrates **Machine Learning** with **Google Maps API** to provide users with multiple route options along with a **Danger Index** for each route.
 
-We have applied Unsupervised Machine Learning Algorithm to find danger index of multiple routes between two places.
+The system helps users make smarter travel decisions by considering not only distance and time but also safety.
 
-We have used a *Clustering algorithm : K-Means* , to rate criminal activities in 166 places on the map of Delhi on a scale of 0 to 4.
-K-means clustering is unsupervised machine learning, which is used when you have unlabeled data (i.e., data without defined categories or groups). The goal of this algorithm is to find groups in the data, with the number of groups represented by the variable K. The algorithm works iteratively to assign each data point to one of K groups based on the features that are provided. Data points are clustered based on feature similarity. The results of the K-means clustering algorithm are:
-1.The centroids of the K clusters, which can be used to label new data
-2.Labels for the training data (each data point is assigned to a single cluster)
+---
 
-## APIs - Google Maps Javascript API
+## 🎯 Key Features
 
-We used Google map and google places apis to display all possible routes between any two location along with danger index of that route. An autocomplete feature of the search bars lets the user select starting and destination locations along with the mode of travel i.e. walking , driving or transit.This leads to displaying routes with markers indicating danger level of a place that falls on that route.The data below the map shows relevant information like time durations , distance and danger index of all possible routes between two places entered. This would enable user to make smart decisions while choosing any route.
+* 📍 Suggests multiple routes between two locations
+* ⚠️ Displays a **Danger Index (0–4)** for each route
+* 🗺️ Integration with **Google Maps API**
+* 🔍 Autocomplete search for locations
+* 🚶 Supports multiple travel modes (Walking, Driving, Transit)
+* 📊 Visual indicators for safety levels on the map
 
-## Result of training the model:
+---
 
-The k-means algorithm assigns 0-4 values to 166 locations in Delhi. An index of 0 indicates that the place is relatively safe with less crime rates in past while an index of 4 means that the place has high crime records in the past.
-We used various legends to display safety index of various locations in Delhi.
-### Legend
-- Green Ticks: Safest
-- Smiley: Moderately safe
-- Exclamation mark: Be careful
-- Skull: Moderately dangerous
-- Cross: Extremely dangerous
+## 🧠 Machine Learning Approach
 
+We used **Unsupervised Machine Learning** to analyze crime data.
 
-## Installation requirements
+### Algorithm Used:
 
-```
-node Js
-npm
-```
+* **K-Means Clustering**
 
-## To run
+### How it Works:
 
-```
-Clone this repo
-cd into this repo
+* Crime data from **166 locations in Delhi** is analyzed
+* Locations are grouped into **5 clusters (0–4 scale)**
+* Each cluster represents a level of safety
+
+### Danger Index Scale:
+
+| Index | Meaning   |
+| ----- | --------- |
+| 0     | Very Safe |
+| 1     | Safe      |
+| 2     | Moderate  |
+| 3     | Risky     |
+| 4     | Dangerous |
+
+---
+
+## 🗺️ Map Visualization
+
+Each location is marked on the map with symbols representing safety levels:
+
+* ✅ Green Tick → Safest
+* 🙂 Smiley → Moderately Safe
+* ⚠️ Exclamation → Be Careful
+* 💀 Skull → Dangerous
+* ❌ Cross → Highly Dangerous
+
+---
+
+## 🔌 Technologies Used
+
+* **Machine Learning:** K-Means Clustering
+* **Frontend:** HTML, CSS, JavaScript
+* **Backend:** Node.js
+* **APIs:** Google Maps JavaScript API, Google Places API
+
+---
+
+## ⚙️ Installation
+
+### Prerequisites:
+
+* Node.js
+* npm
+
+### Steps:
+
+```bash
+cd crime-rate-prediction
 npm install
-Generate your Google Maps API key and insert it in script in the .html file 
+```
+
+---
+
+## ▶️ Run the Project
+
+1. Generate your **Google Maps API Key**
+2. Add the API key in the `.html` file
+3. Start the server:
+
+```bash
 node app.js
 ```
-Open Your favourite browser and go to localhost:3000 to access this site. (Select driving/walking/transit radio buttons before you enter places. Refresh evreytime you need to test for a different set of places)
 
+4. Open your browser and go to:
 
+```
+http://localhost:3000
+```
 
-This project was developed by Vikash Kumar Yadav.
+👉 Select travel mode (Walking/Driving/Transit) before searching routes.
 
-I built this project to analyze crime data using Machine Learning (K-Means Clustering) and provide safer route suggestions using Google Maps.
+---
+
+## 📊 Output
+
+* Displays all possible routes between two locations
+* Shows:
+
+  * ⏱️ Time duration
+  * 📏 Distance
+  * ⚠️ Danger Index
+
+This enables users to choose the safest route.
+
+---
+
+## 🚀 Future Improvements
+
+* Real-time crime data integration
+* More cities support
+* Advanced prediction models
+* Mobile application
+
+---
+
+## 👨‍💻 Author
+
+**Vikash Kumar Yadav**
+
+---
+
+## 💡 Project Goal
+
+To combine **AI + Maps** for solving real-world safety problems and helping people travel more securely.
+
+---
